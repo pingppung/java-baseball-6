@@ -34,4 +34,13 @@ public class NumberGeneratorTest {
         assertThat(uniqueNumbers.size()).isEqualTo(computerNumbers.size())
                 .withFailMessage("중복된 숫자가 존재합니다.");
     }
+
+    @DisplayName("컴퓨터_랜덤숫자_1에서_9사이_범위_확인")
+    @Test
+    void computerNumbersInRange() {
+        for (int number : computerNumbers) {
+            assertThat(number).isBetween(1, 9)
+                    .withFailMessage("1에서 9 사이의 수가 아닌 것이 존재합니다.");
+        }
+    }
 }
