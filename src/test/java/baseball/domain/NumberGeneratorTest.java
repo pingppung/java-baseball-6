@@ -23,4 +23,15 @@ public class NumberGeneratorTest {
         assertThat(computerNumbers.size()).isEqualTo(3)
                 .withFailMessage("3자리의 수가 아닙니다.");
     }
+
+    @DisplayName("컴퓨터_랜덤숫자_중복확인")
+    @Test
+    void computerNumbersDuplication() {
+        List<Integer> uniqueNumbers = computerNumbers.stream()
+                .distinct()
+                .toList();
+
+        assertThat(uniqueNumbers.size()).isEqualTo(computerNumbers.size())
+                .withFailMessage("중복된 숫자가 존재합니다.");
+    }
 }
