@@ -7,7 +7,6 @@ public class Computer {
 
     public Computer() {
         createNumbers();
-        System.out.println(numbers);
     }
 
     private void createNumbers() {
