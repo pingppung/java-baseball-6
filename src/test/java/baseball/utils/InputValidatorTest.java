@@ -29,4 +29,20 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("3글자가 아닙니다.");
     }
+
+    @DisplayName("입력값에_중복된_숫자가_존재하지_않는_경우")
+    @Test
+    void validateDuplicateNumber() {
+        String input = "123";
+        inputValidator.validateDuplicateNumber(input);
+    }
+
+    @DisplayName("입력값에_중복된_숫자가_존재할_경우")
+    @Test
+    void invalidateDuplicateNumber() {
+        String input = "112";
+        assertThatThrownBy(() -> inputValidator.validateDuplicateNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복된 숫자가 있습니다.");
+    }
 }
