@@ -61,4 +61,20 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 1~9 범위를 벗어난 숫자가 있습니다.");
     }
+
+    @DisplayName("입력값에_문자없이_숫자로만_이루어진_경우")
+    @Test
+    void validateNonNumeric() {
+        String input = "123";
+        inputValidator.validateNonNumeric(input);
+    }
+
+    @DisplayName("입력값에_문자가_존재하는_경우")
+    @Test
+    void invalidateNonNumeric() {
+        String input = "1S2";
+        assertThatThrownBy(() -> inputValidator.validateNonNumeric(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 숫자 입력만 가능합니다.");
+    }
 }
