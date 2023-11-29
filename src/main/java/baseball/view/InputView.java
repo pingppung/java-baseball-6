@@ -11,11 +11,10 @@ public class InputView {
         return inputWithPrompt(INPUT_NUMBER_PROMPT);
     }
 
-    public int getRestartOrEnd() {
+    public boolean getRestartOrEnd() {
         String input = inputWithPrompt(RESTART_OR_END_PROMPT);
         int number = InputValidator.validateNonNumeric(input);
-        InputValidator.validateRestartOrEndNumber(number);
-        return number;
+        return InputValidator.validateRestartOrEndNumber(number);
     }
 
     private String inputWithPrompt(String prompt) {

@@ -49,9 +49,14 @@ public class InputValidator {
         }
     }
 
-    public static void validateRestartOrEndNumber(int input) {
-        if (input != RESTART_NUMBER && input != END_NUMBER) {
-            throw new IllegalArgumentException(GAME_DECISION_ERROR_MESSAGE);
+    public static boolean validateRestartOrEndNumber(int input) {
+        if (input == RESTART_NUMBER) {
+            return true;
         }
+        if (input == END_NUMBER) {
+            return false;
+        }
+        throw new IllegalArgumentException(GAME_DECISION_ERROR_MESSAGE);
+
     }
 }

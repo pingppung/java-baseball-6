@@ -17,12 +17,11 @@ public class GameController {
 
     public void start() {
         outputView.gameStartMessage();
-        while (true) {  //재시작/종료 로직 추가
+        do {
             Computer computer = new Computer();
             List<Integer> computerNumbers = computer.getRandomNumbers();
             play(computerNumbers);
-            break;
-        }
+        } while (decisionRestartOrEnd());
         outputView.gameQuitMessage();
     }
 
@@ -35,5 +34,9 @@ public class GameController {
             //비교 결과값 출력 로직 추가
             test = false;
         } while (test);
+    }
+
+    public boolean decisionRestartOrEnd() {
+        return inputView.getRestartOrEnd();
     }
 }
