@@ -10,15 +10,15 @@ public class InputValidator {
     private static final String NON_NUMERIC_ERROR_MESSAGE = "[ERROR] 숫자 입력만 가능합니다.";
     private static final int RANDOM_MIN_NUMBER = 1;
     private static final int RANDOM_MAX_NUMBER = 9;
-    private final static int NUMBER_SIZE = 3;
+    private static final int NUMBER_SIZE = 3;
 
-    public void validateNumberLength(String input) {
+    public static void validateNumberLength(String input) {
         if (input.length() != NUMBER_SIZE) {
             throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE);
         }
     }
 
-    public void validateDuplicateNumber(String input) {
+    public static void validateDuplicateNumber(String input) {
         Set<Integer> numbers = new HashSet<>();
         boolean hasDuplicate = input.chars()
                 .mapToObj(Character::getNumericValue)
@@ -29,7 +29,7 @@ public class InputValidator {
         }
     }
 
-    public void validateNumberInRange(String input) {
+    public static void validateNumberInRange(String input) {
         for (char c : input.toCharArray()) {
             int digit = Character.getNumericValue(c);
             if (digit < RANDOM_MIN_NUMBER || digit > RANDOM_MAX_NUMBER) {
@@ -38,7 +38,7 @@ public class InputValidator {
         }
     }
 
-    public void validateNonNumeric(String input) {
+    public static void validateNonNumeric(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {

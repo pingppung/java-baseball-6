@@ -16,6 +16,6 @@ public class InputView {
 
     private String inputWithPrompt(String prompt) {
         System.out.println(prompt);
-        return Console.readLine();
+        return Console.readLine().trim();
     }
 }
