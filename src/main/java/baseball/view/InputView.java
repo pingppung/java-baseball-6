@@ -1,5 +1,6 @@
 package baseball.view;
 
+import baseball.utils.InputValidator;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
@@ -10,8 +11,11 @@ public class InputView {
         return inputWithPrompt(INPUT_NUMBER_PROMPT);
     }
 
-    public String getRestartOrEnd() {
-        return inputWithPrompt(RESTART_OR_END_PROMPT);
+    public int getRestartOrEnd() {
+        String input = inputWithPrompt(RESTART_OR_END_PROMPT);
+        int number = InputValidator.validateNonNumeric(input);
+        InputValidator.validateRestartOrEndNumber(number);
+        return number;
     }
 
     private String inputWithPrompt(String prompt) {

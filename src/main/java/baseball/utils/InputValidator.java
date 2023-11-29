@@ -41,9 +41,9 @@ public class InputValidator {
         }
     }
 
-    public static void validateNonNumeric(String input) {
+    public static int validateNonNumeric(String input) {
         try {
-            Integer.parseInt(input);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NON_NUMERIC_ERROR_MESSAGE);
         }
