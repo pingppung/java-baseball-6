@@ -1,16 +1,21 @@
 package baseball.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Computer {
     private List<Integer> numbers;
 
     public Computer() {
-        createNumbers();
+        createRandomNumbers();
     }
 
-    private void createNumbers() {
+    private void createRandomNumbers() {
         NumberGenerator numberGenerator = new NumberGenerator();
-        numbers = numberGenerator.generate();
+        this.numbers = numberGenerator.generate();
+    }
+
+    public List<Integer> getRandomNumbers() {
+        return new ArrayList<>(numbers);
     }
 }
