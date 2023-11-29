@@ -27,7 +27,7 @@ public class InputValidatorTest {
         String input = "12345";
         assertThatThrownBy(() -> inputValidator.validateNumberLength(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("3글자가 아닙니다.");
+                .hasMessage("[ERROR] 3자리의 수가 아닙니다.");
     }
 
     @DisplayName("입력값에_중복된_숫자가_존재하지_않는_경우")
@@ -43,6 +43,22 @@ public class InputValidatorTest {
         String input = "112";
         assertThatThrownBy(() -> inputValidator.validateDuplicateNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("중복된 숫자가 있습니다.");
+                .hasMessage("[ERROR] 중복된 숫자가 있습니다.");
+    }
+
+    @DisplayName("입력값이_유효한_범위내에_존재하는_경우")
+    @Test
+    void validateNumberInRange() {
+        String input = "137";
+        inputValidator.validateNumberInRange(input);
+    }
+
+    @DisplayName("입력값의_숫자가_범위를 벗어나는_경우")
+    @Test
+    void invalidateNumberInRange() {
+        String input = "109";
+        assertThatThrownBy(() -> inputValidator.validateNumberInRange(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 1~9 범위를 벗어난 숫자가 있습니다.");
     }
 }
