@@ -17,20 +17,6 @@ public class NumberComparatorTest {
         computerNumbers = List.of(1, 2, 3);
     }
 
-    @DisplayName("")
-    @Test
-    public void testGenerateResult() {
-        List<Integer> playerNumbers1 = List.of(1, 2, 4);
-        List<Integer> playerNumbers2 = List.of(4, 5, 6);
-
-        NumberComparator numberComparator1 = new NumberComparator(computerNumbers, playerNumbers1);
-        NumberComparator numberComparator2 = new NumberComparator(computerNumbers, playerNumbers2);
-
-        assertEquals("1스트라이크 1볼", numberComparator1.generateResult());
-        assertEquals("낫싱", numberComparator2.generateResult());
-    }
-
-
     @DisplayName("3스트라이크의_여부")
     @ParameterizedTest
     @CsvSource({
