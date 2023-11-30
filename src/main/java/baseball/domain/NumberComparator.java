@@ -1,12 +1,12 @@
 package baseball.domain;
 
+import baseball.constants.BaseballConstants;
 import java.util.List;
 
 public class NumberComparator {
     private final static String STRIKE = "스트라이크";
     private final static String BALL = "볼";
     private final static String NOTHING = "낫싱";
-    private final static int MAX_PITCHES = 3;
     private final List<Integer> computer;
     private final List<Integer> player;
 
@@ -27,7 +27,7 @@ public class NumberComparator {
 
     private int strikeCount() {
         int count = 0;
-        for (int i = 0; i < MAX_PITCHES; i++) {
+        for (int i = 0; i < BaseballConstants.PITCHES.value; i++) {
             if (computer.get(i).equals(player.get(i))) {
                 count++;
             }
@@ -53,6 +53,6 @@ public class NumberComparator {
     }
 
     public boolean isThreeStrikes() {
-        return strikeCount() == MAX_PITCHES;
+        return strikeCount() == BaseballConstants.PITCHES.value;
     }
 }

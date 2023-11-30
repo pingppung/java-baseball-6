@@ -1,23 +1,15 @@
 package baseball.utils;
 
+import baseball.constants.BaseballConstants;
 import java.util.HashSet;
 import java.util.Set;
 
 public class InputValidator {
-    private static final String LENGTH_ERROR_MESSAGE = "[ERROR] 3자리의 수가 아닙니다.";
-    private static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 중복된 숫자가 있습니다.";
-    private static final String RANGE_ERROR_MESSAGE = "[ERROR] 1~9 범위를 벗어난 숫자가 있습니다.";
-    private static final String NON_NUMERIC_ERROR_MESSAGE = "[ERROR] 숫자 입력만 가능합니다.";
-    private static final String GAME_DECISION_ERROR_MESSAGE = "[ERROR] 재시작 : 1 or 종료 : 2만 입력이 가능합니다.";
-    private static final int RANDOM_MIN_NUMBER = 1;
-    private static final int RANDOM_MAX_NUMBER = 9;
-    private static final int RESTART_NUMBER = 1;
-    private static final int END_NUMBER = 2;
-    private static final int NUMBER_SIZE = 3;
 
     public static void validateNumberLength(String input) {
-        if (input.length() != NUMBER_SIZE) {
-            throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE);
+        int pitchCount = BaseballConstants.PITCHES.value;
+        if (input.length() != pitchCount) {
+            throw new IllegalArgumentException(ErrorMessages.LENGTH_ERROR.formatMessage(pitchCount));
         }
     }
 
@@ -28,15 +20,17 @@ public class InputValidator {
                 .anyMatch(i -> !numbers.add(i));
 
         if (hasDuplicate) {
-            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_ERROR.message);
         }
     }
 
     public static void validateNumberInRange(String input) {
+        int randomMax = BaseballConstants.RANDOM_MAX_NUMBER.value;
+        int randomMin = BaseballConstants.RANDOM_MIN_NUMBER.value;
         for (char c : input.toCharArray()) {
             int digit = Character.getNumericValue(c);
-            if (digit < RANDOM_MIN_NUMBER || digit > RANDOM_MAX_NUMBER) {
-                throw new IllegalArgumentException(RANGE_ERROR_MESSAGE);
+            if (digit < randomMin || digit > randomMax) {
+                throw new IllegalArgumentException(ErrorMessages.RANGE_ERROR.formatMessage(randomMin, randomMax));
             }
         }
     }
@@ -45,18 +39,20 @@ public class InputValidator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NON_NUMERIC_ERROR_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessages.NON_NUMERIC_ERROR.message);
         }
     }
 
     public static boolean validateRestartOrEndNumber(int input) {
-        if (input == RESTART_NUMBER) {
+        int restart = BaseballConstants.RESTART_NUMBER.value;
+        int end = BaseballConstants.END_NUMBER.value;
+        if (input == restart) {
             return true;
         }
-        if (input == END_NUMBER) {
+        if (input == end) {
             return false;
         }
-        throw new IllegalArgumentException(GAME_DECISION_ERROR_MESSAGE);
+        throw new IllegalArgumentException(ErrorMessages.GAME_DECISION_ERROR.formatMessage(restart, end));
 
     }
 }
