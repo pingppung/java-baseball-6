@@ -12,13 +12,13 @@ public class InputView {
     }
 
     public boolean getRestartOrEnd() {
-        String input = inputWithPrompt(RESTART_OR_END_PROMPT);
+        String input = inputWithPrompt(RESTART_OR_END_PROMPT + "\n");
         int number = InputValidator.validateNonNumeric(input);
         return InputValidator.validateRestartOrEndNumber(number);
     }
 
     private String inputWithPrompt(String prompt) {
-        System.out.println(prompt);
+        System.out.print(prompt);
         return Console.readLine().trim();
     }
 }

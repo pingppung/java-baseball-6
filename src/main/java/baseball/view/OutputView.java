@@ -10,12 +10,13 @@ public class OutputView {
     }
 
     public void gameEndMessage() {
-        System.out.print(CORRECT_MESSAGE);
+        String format = String.format(CORRECT_MESSAGE, 3);
+        System.out.print(format);
         gameQuitMessage();
     }
 
     public void printResult(String result) {
-        System.out.print(result);
+        System.out.println(result);
     }
 
     public void gameQuitMessage() {
