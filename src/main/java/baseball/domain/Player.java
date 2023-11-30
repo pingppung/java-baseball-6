@@ -27,4 +27,8 @@ public class Player {
         }
         return convertedNumbers;
     }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
 }

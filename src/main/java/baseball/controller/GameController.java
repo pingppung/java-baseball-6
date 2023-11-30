@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.domain.Computer;
+import baseball.domain.NumberComparator;
 import baseball.domain.Player;
 import baseball.view.InputView;
 import baseball.view.OutputView;
@@ -26,12 +27,15 @@ public class GameController {
     }
 
     public void play(List<Integer> computerNumbers) {
+
         boolean test = true;
         do {
             String inputNumbers = inputView.getNumbers();
             Player player = new Player(inputNumbers);
-            //컴퓨터와 사용자의 숫자 비교 로직 추가
-            //비교 결과값 출력 로직 추가
+            List<Integer> playerNumbers = player.getNumbers();
+
+            NumberComparator numberComparator = new NumberComparator(computerNumbers, playerNumbers);
+            outputView.printResult(numberComparator.generateResult());
             test = false;
         } while (test);
     }

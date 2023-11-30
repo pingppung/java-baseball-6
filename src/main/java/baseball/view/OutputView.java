@@ -14,6 +14,10 @@ public class OutputView {
         gameQuitMessage();
     }
 
+    public void printResult(String result) {
+        System.out.print(result);
+    }
+
     public void gameQuitMessage() {
         System.out.println(GAME_QUIT_MESSAGE);
     }
