@@ -22,22 +22,21 @@ public class GameController {
             Computer computer = new Computer();
             List<Integer> computerNumbers = computer.getRandomNumbers();
             play(computerNumbers);
+            outputView.gameEndMessage();
         } while (decisionRestartOrEnd());
         outputView.gameQuitMessage();
     }
 
     public void play(List<Integer> computerNumbers) {
-
-        boolean test = true;
+        NumberComparator numberComparator;
         do {
             String inputNumbers = inputView.getNumbers();
             Player player = new Player(inputNumbers);
             List<Integer> playerNumbers = player.getNumbers();
 
-            NumberComparator numberComparator = new NumberComparator(computerNumbers, playerNumbers);
+            numberComparator = new NumberComparator(computerNumbers, playerNumbers);
             outputView.printResult(numberComparator.generateResult());
-            test = false;
-        } while (test);
+        } while (!numberComparator.isThreeStrikes());
     }
 
     public boolean decisionRestartOrEnd() {
